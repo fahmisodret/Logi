@@ -2,7 +2,7 @@
 namespace Services;
 class TestService
 {
-	public function create()
+	public function create($data)
 	{
 		$post = Test::create([
 			'title' => $data['title'],

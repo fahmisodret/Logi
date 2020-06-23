@@ -20,7 +20,7 @@
         <!-- small box -->
         <div class="small-box bg-success">
             <div class="inner">
-                <h3>{{App\Menu::all()->count()}}</h3>
+                <h3>0</h3>
                 <p>Total Menu</p>
             </div>
             <div class="icon">
