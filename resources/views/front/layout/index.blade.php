@@ -153,42 +153,44 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-3">
-            <p class="mb-4"><img src="images/logo2.png" alt="Image" class="img-fluid"></p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae nemo minima qui dolor, iusto iure.</p>  
+            <p class="mb-4">
+              <img src="Image/logo/{{Facades\Services\ConfigService::findByName('info_logo')->keterangan}}" alt="Image" class="img-fluid">
+            </p>
+          </div>
+          <div class="col-lg-3">
+            <h3 class="footer-heading"><span>{{Facades\Services\ConfigService::findByName('info_name')->keterangan}}</span></h3>
+            <p>{{Facades\Services\ConfigService::findByName('info_tentang')->keterangan}}</p>  
             <p><a href="#">Learn More</a></p>
           </div>
           <div class="col-lg-3">
-            <h3 class="footer-heading"><span>Our Company</span></h3>
+            <h3 class="footer-heading"><span>Perusahaan Kami</span></h3>
             <ul class="list-unstyled">
-                <li><a href="#">About</a></li>
-                <li><a href="#">News</a></li>
-                <li><a href="#">Services</a></li>
-                <li><a href="#">Our Team</a></li>
+                <li><a href="{{route('about')}}">About</a></li>
+                <li><a href="{{route('about')}}">Tim Kami</a></li>
+                <li><a href="{{route('project')}}">Project</a></li>
+                <li><a href="{{route('galery')}}">Galery</a></li>
                 <li><a href="#">Careers</a></li>
-                <li><a href="#">Projects</a></li>
             </ul>
           </div>
-          <div class="col-lg-3">
+          {{-- <div class="col-lg-3">
               <h3 class="footer-heading"><span>Our Services</span></h3>
               <ul class="list-unstyled">
                   <li><a href="#">Industrial</a></li>
                   <li><a href="#">Construction</a></li>
                   <li><a href="#">Remodeling</a></li>
               </ul>
-          </div>
+          </div> --}}
           <div class="col-lg-3">
-              <h3 class="footer-heading"><span>Contact</span></h3>
+              <h3 class="footer-heading"><span>Kontak</span></h3>
               <ul class="list-unstyled">
-                  <li><a href="#">Help Center</a></li>
-                  <li><a href="#">Support Community</a></li>
-                  <li><a href="#">Press</a></li>
-                  <li><a href="#">FAQ</a></li>
-                  <li><a href="#">Our Partners</a></li>
+                  <li><a href="{{route('contact')}}">Bantuan</a></li>
+                  <li>{{Facades\Services\ConfigService::findByName('info_email')->keterangan}}</li>
+                  <li>{{Facades\Services\ConfigService::findByName('info_phone')->keterangan}}</li>
               </ul>
           </div>
         </div>
 
-        <div class="row">
+        {{-- <div class="row">
           <div class="col-12">
             <div class="copyright">
                 <p>
@@ -198,7 +200,7 @@
                     </p>
             </div>
           </div>
-        </div>
+        </div> --}}
       </div>
     </div>
     

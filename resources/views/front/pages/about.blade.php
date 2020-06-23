@@ -8,7 +8,7 @@
         <div class="row justify-content-center">
           <div class="col-12 mb-5 text-center">
             <h3 class="section-subtitle">Tim Kami</h3>
-            <h2 class="section-title text-black mb-4">Kami punya Tim yang <strong>bagus dan berpengalaman</strong>.</h2>
+            <h2 class="section-title text-black mb-4">Tim <strong>berpengalaman</strong> kami.</h2>
           </div>
         </div>
 
@@ -35,7 +35,7 @@
       </div>
     </div>
 
-    <div class="site-section services-1-wrap">
+    {{-- <div class="site-section services-1-wrap">
       <div class="container">
         <div class="row mb-5 justify-content-center text-center">
           <div class="col-lg-5">
@@ -94,10 +94,10 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> --}}
     <!-- END services -->
 
-    <div class="site-section pb-0">
+    {{-- <div class="site-section pb-0">
       <div class="block-2 pb-0 mb-0">
         <div class="container">
           <div class="row">
@@ -136,7 +136,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> --}}
     <!-- END block-2 -->
     
     {{-- <div class="py-5 bg-primary block-4">
