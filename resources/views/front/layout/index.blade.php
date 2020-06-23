@@ -133,7 +133,7 @@
     </div>
 
     <div class="hero-slide owl-carousel site-blocks-cover">
-      @foreach(App\SLider::all() as $slider)
+      @foreach(App\Slider::all() as $slider)
       <div class="intro-section" style="background-image: url('{{$slider->image_url}}')">
         <div class="container">
           <div class="row align-items-center">

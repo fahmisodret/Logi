@@ -70,7 +70,7 @@
         <div class="container">
           <div class="row">
             <div class="col-lg-6 mb-4 mb-lg-0">
-              <img src="images/about_1.jpg" alt="Image " class="img-fluid img-overlap">
+              <img src="Image/{{Facades\Services\ConfigService::findByName('info_image')->keterangan}}" alt="Image " class="img-fluid img-overlap">
             </div>
             <div class="col-lg-5 ml-auto">
               <h3 class="section-subtitle">Why Choose Us</h3>

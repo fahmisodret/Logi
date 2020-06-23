@@ -79,3 +79,9 @@ Route::get('/about', 'FrontController@about')->name('about');
 Route::get('/project', 'FrontController@project')->name('project');
 Route::get('/galery', 'FrontController@galery')->name('galery');
 Route::get('/contact', 'FrontController@contact')->name('contact');
+
+Route::get('/clear-cache', function() {
+    $exitCode = Artisan::call('config:clear');
+    $exitCode = Artisan::call('config:cache');
+    return 'DONE'; //Return anything
+});
