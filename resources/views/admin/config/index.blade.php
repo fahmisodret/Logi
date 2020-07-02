@@ -30,8 +30,8 @@
                 @endif
                 @foreach($data as $item)
                 <tr>
-                    <td>{{$item->name}}</td>
-                    <td>{{$item->keterangan}}</td>
+                    <td>{{Str::title(Str::of($item->name)->replace('_', ' '))}}</td>
+                    <td>{{Str::limit($item->keterangan, 80)}}</td>
                     <td><div style="text-align:center">
                         <a href="{{url("admin/config/edit/".$item->id)}}" class="btn btn-warning btn-xs">Ubah</a> 
                         <a href="{{url("admin/config/destroy/".$item->id)}}" class="btn btn-danger btn-xs">Hapus</a> 

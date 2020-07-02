@@ -8,13 +8,15 @@
             <div class="row">
                 @foreach($data as $galery)
                 <div class="col-md-6 col-lg-3 mb-4">
-                    <div class="project-item">
+                    <div class="project-item galery">
                         <div class="project-item-contents">
                             <a href="{{'#'}}">
                                 <span class="project-item-category">{{$galery->name}}</span>
                             </a>
                         </div>
-                        <img src="{{$galery->image_url}}" alt="Image" class="img-fluid">
+                        <a href="{{$galery->image_url}}">
+                            <img src="{{$galery->image_url}}" alt="Image" class="img-fluid">
+                        </a>
                     </div>
                 </div>
                 @endforeach

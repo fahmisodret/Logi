@@ -32,4 +32,22 @@
 <script src="{{ asset('assets/dist/js/pages/dashboard.js') }}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('assets/dist/js/demo.js') }}"></script>
+<script>
+	$(document).ready(function() {
+	  $('#editor').summernote({
+        placeholder: 'Hello Bootstrap 4',
+        tabsize: 3,
+        height: 100,
+        toolbar: [
+          ['style', ['style']],
+          ['font', ['bold', 'underline', 'clear']],
+          ['color', ['color']],
+          ['para', ['ul', 'ol', 'paragraph']],
+          ['table', ['table']],
+          // ['insert', ['link', 'picture', 'video']],
+          ['view', ['fullscreen', 'codeview', 'help']]
+        ]
+      });
+	});
+</script>
 @yield('js')

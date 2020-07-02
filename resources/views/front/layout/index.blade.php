@@ -5,6 +5,8 @@
   <title>{{Facades\Services\ConfigService::findByName('info_name')->keterangan}}</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta Content="{{Facades\Services\ConfigService::findByName('blog_meta_description')->keterangan}}" Name="Description"/>
+  <meta Content="{{Facades\Services\ConfigService::findByName('blog_meta_keywords')->keterangan}}" Name="Keywords"/>
 
 
   <link href="https://fonts.googleapis.com/css?family=Oswald:300,400,700|Muli:300,400" rel="stylesheet">
@@ -27,7 +29,6 @@
   <link rel="stylesheet" href="{{ asset('assets/front/css/jquery.mb.YTPlayer.min.css')}}" media="all" type="text/css">
 
   <link rel="stylesheet" href="{{ asset('assets/front/css/style.css')}}">
-
   @yield('css')
 
 </head>
@@ -48,27 +49,14 @@
 
     
     <div class="header-top bg-light">
-      <div class="container">
+      <div class="container pb-1 pt-1">
         <div class="row align-items-center">
-          <div class="col-6 col-lg-3">
+          <div class="col-9 col-lg-4">
             <a href="{{url('/')}}">
-              <img src="Image/logo/{{Facades\Services\ConfigService::findByName('info_logo')->keterangan}}" alt="Image" class="img-fluid" style="height: 50px">DSM
+              <img src="{{Storage::url('upload/config/'.Facades\Services\ConfigService::findByName('info_img_logo')->keterangan)}}" alt="Image" class="img-fluid" style="height: 100px">{{Facades\Services\ConfigService::findByName('info_name')->keterangan}}
             </a>
           </div>
-          <div class="col-lg-3 d-none d-lg-block">
-
-            <div class="quick-contact-icons d-flex">
-              <div class="icon align-self-start">
-                <span class="flaticon-placeholder text-primary"></span>
-              </div>
-              <div class="text">
-                <span class="h4 d-block">{{Facades\Services\ConfigService::findByName('info_city')->keterangan}}</span>
-                <span class="caption-text">{{Facades\Services\ConfigService::findByName('info_address')->keterangan}}</span>
-              </div>
-            </div>
-
-          </div>
-          <div class="col-lg-3 d-none d-lg-block">
+          <div class="col-lg-4 d-none d-lg-block">
             <div class="quick-contact-icons d-flex">
               <div class="icon align-self-start">
                 <span class="flaticon-call text-primary"></span>
@@ -80,7 +68,7 @@
             </div>
           </div>
 
-          <div class="col-lg-3 d-none d-lg-block">
+          <div class="col-lg-4 d-none d-lg-block">
             <div class="quick-contact-icons d-flex">
               <div class="icon align-self-start">
                 <span class="flaticon-email text-primary"></span>
@@ -92,7 +80,7 @@
             </div>
           </div>
 
-          <div class="col-6 d-block d-lg-none text-right">
+          <div class="col-3 d-block d-lg-none text-right">
               <a href="#" class="d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-black"><span
                 class="icon-menu h3"></span></a>
           </div>
@@ -104,7 +92,7 @@
             <div class="mr-auto">
               <nav class="site-navigation position-relative text-right" role="navigation">
                 <ul class="site-menu main-menu js-clone-nav mr-auto d-none pl-0 d-lg-block">
-                  <li class="active">
+                  <li>
                     <a href="{{route('home')}}" class="nav-link text-left">Home</a>
                   </li>
                   <li>
@@ -132,19 +120,33 @@
       </div>
     </div>
 
-    <div class="hero-slide owl-carousel site-blocks-cover">
-      @foreach(App\Slider::all() as $slider)
-      <div class="intro-section" style="background-image: url('{{$slider->image_url}}')">
-        <div class="container">
-          <div class="row align-items-center">
-            <div class="col-lg-12 mx-auto text-center" data-aos="fade-up">
-              <h1>{{$slider->name}}</h1>
+    <div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-ride="carousel">
+      <ol class="carousel-indicators">
+        @for($i=0;$i<App\Slider::count();$i++)
+        <li data-target="#carouselExampleIndicators" data-slide-to="{{$i}}" @if($i == 0) class="active" @endif></li>
+        @endfor
+      </ol>
+      <div class="carousel-inner" role="listbox">
+        <!-- Slide One - Set the background image for this slide in the line below -->
+        @foreach(App\Slider::all() as $slider)
+          <div class="carousel-item @if($loop->first) active @endif" style="background-image: url({{$slider->image_url}})">
+            <div class="carousel-caption d-none d-md-block">
+              <h2 class="display-4">{{$slider->name}}</h2>
+              {{-- <p class="lead">{{$slider->name}}</p> --}}
             </div>
           </div>
-        </div>
+        @endforeach
       </div>
-      @endforeach
+      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
     </div>
+
     <!-- END slider -->
 
     @yield('content')
@@ -154,12 +156,12 @@
         <div class="row">
           <div class="col-lg-3">
             <p class="mb-4">
-              <img src="Image/logo/{{Facades\Services\ConfigService::findByName('info_logo')->keterangan}}" alt="Image" class="img-fluid">
+              <img src="{{Storage::url('upload/config/'.Facades\Services\ConfigService::findByName('info_img_logo')->keterangan)}}" alt="Image" class="img-fluid">
             </p>
           </div>
           <div class="col-lg-3">
             <h3 class="footer-heading"><span>{{Facades\Services\ConfigService::findByName('info_name')->keterangan}}</span></h3>
-            <p>{{Facades\Services\ConfigService::findByName('info_tentang')->keterangan}}</p>  
+            <p>{{Str::limit(strip_tags(Facades\Services\ConfigService::findByName('info_tentang')->keterangan), 150)}}</p>  
             <p><a href="#">Learn More</a></p>
           </div>
           <div class="col-lg-3">
@@ -172,20 +174,14 @@
                 <li><a href="#">Careers</a></li>
             </ul>
           </div>
-          {{-- <div class="col-lg-3">
-              <h3 class="footer-heading"><span>Our Services</span></h3>
-              <ul class="list-unstyled">
-                  <li><a href="#">Industrial</a></li>
-                  <li><a href="#">Construction</a></li>
-                  <li><a href="#">Remodeling</a></li>
-              </ul>
-          </div> --}}
           <div class="col-lg-3">
               <h3 class="footer-heading"><span>Kontak</span></h3>
               <ul class="list-unstyled">
                   <li><a href="{{route('contact')}}">Bantuan</a></li>
                   <li>{{Facades\Services\ConfigService::findByName('info_email')->keterangan}}</li>
                   <li>{{Facades\Services\ConfigService::findByName('info_phone')->keterangan}}</li>
+                  <li>{!!Facades\Services\ConfigService::findByName('info_address')->keterangan!!}</li>
+                  <li>{!!Facades\Services\ConfigService::findByName('info_address_pm')->keterangan!!}</li>
               </ul>
           </div>
         </div>
@@ -206,6 +202,11 @@
     
 
   </div>
+    <div class="sosmed">
+      <a target="_blank" href="http://facebook.com{{Facades\Services\ConfigService::findByName('social_fb')->keterangan}}" class="btn btn-info"><span class="icon-facebook"></span></a>
+      <a target="_blank" href="http://www.instagram.com{{Facades\Services\ConfigService::findByName('social_ig')->keterangan}}" class="btn btn-danger"><span class="icon-instagram"></span></a>
+      <a target="_blank" href="https://wa.me/{{Facades\Services\ConfigService::findByName('info_wa')->keterangan}}" class="btn btn-success"><span class="icon-whatsapp"></span></a>
+    </div>
   <!-- .site-wrap -->
 
 

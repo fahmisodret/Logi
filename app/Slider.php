@@ -13,4 +13,9 @@ class Slider extends Model
     {
         return Storage::url('upload/slider/'.$this->image);
     }
+
+    public function getImageSmUrlAttribute()
+    {
+        return Storage::url('upload/slider/thumb/'.$this->image);
+    }
 }

@@ -31,7 +31,7 @@
                 @foreach($data as $item)
                 <tr>
                     <td>{{$item->image}}</td>
-                    <td>{{$item->Name}}</td>
+                    <td>{{$item->name}}</td>
                     <td><div style="text-align:center">
                         <a href="{{url("admin/galery/edit/".$item->id)}}" class="btn btn-warning btn-xs">Ubah</a> 
                         <a href="{{url("admin/galery/destroy/".$item->id)}}" class="btn btn-danger btn-xs">Hapus</a> 

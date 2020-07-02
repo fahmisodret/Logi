@@ -9,13 +9,40 @@ class DatabaseSeeder extends Seeder
 {
     /**
      * Run the database seeds.
+     *
+     * @return void
      */
     public function run()
     {
         Model::unguard();
+        // $this->call('UsersTableSeeder');
 
-        $this->call('UsersTableSeeder');
-        // $this->call(TagsSeeder::class);
+        $this->setFKCheckOff();
+        $this->call(ConfigsTableSeeder::class);
+        $this->call(CategoriesTableSeeder::class);
+        $this->call(ArticlesTableSeeder::class);
+        $this->call(TagsTableSeeder::class);
+        $this->call(ArticlesTagsTableSeeder::class);
+        $this->call(ArticlesCategoriesTableSeeder::class);
+        $this->setFKCheckOn();
+    }
+
+    private function setFKCheckOff()
+    {
+        switch (DB::getDriverName()) {
+            case 'mysql':
+                DB::statement('SET FOREIGN_KEY_CHECKS=0');
+                break;
+        }
+    }
+
+    private function setFKCheckOn()
+    {
+        switch (DB::getDriverName()) {
+            case 'mysql':
+                DB::statement('SET FOREIGN_KEY_CHECKS=1');
+                break;
+        }
     }
 }
 

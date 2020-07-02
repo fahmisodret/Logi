@@ -27,6 +27,7 @@ Route::group(['middleware' => ['auth', 'admin', 'operator']], function () {
 
 Route::group(['middleware' => ['auth', 'admin']], function () {
 	Route::group(['prefix' => 'admin', 'as' => 'admin'], function () {
+		Route::get('/', 'AdminController@index')->name('');
 		Route::group(['prefix' => 'config', 'as' => '.config'], function () {
 			Route::get('/', 'ConfigController@index')->name('.index');
 			Route::get('/edit/{id}', 'ConfigController@edit')->name('.edit');
@@ -70,7 +71,22 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
 			Route::post('/store', 'UserController@store')->name('.store');
 			Route::get('/verif/{id}', 'UserController@verif')->name('.verif');
 		});
-		Route::get('/', 'AdminController@index')->name('');
+		Route::group(['prefix' => 'project-detail', 'as' => '.project-detail'], function () {
+			Route::get('/', 'ProjectDetailController@index')->name('.index');
+			Route::get('/create', 'ProjectDetailController@create')->name('.create');
+			Route::post('/store', 'ProjectDetailController@store')->name('.store');
+			Route::get('/edit/{id}', 'ProjectDetailController@edit')->name('.edit');
+			Route::post('/update/{id}', 'ProjectDetailController@update')->name('.update');
+			Route::get('/destroy/{id}', 'ProjectDetailController@destroy')->name('.destroy');
+		});
+		Route::group(['prefix' => 'fasilitas', 'as' => '.fasilitas', 'namespace' => 'Backend'], function () {
+			Route::get('/', 'FasilitasController@index')->name('.index');
+			Route::get('/create', 'FasilitasController@create')->name('.create');
+			Route::post('/store', 'FasilitasController@store')->name('.store');
+			Route::get('/edit/{id}', 'FasilitasController@edit')->name('.edit');
+			Route::post('/update/{id}', 'FasilitasController@update')->name('.update');
+			Route::get('/destroy/{id}', 'FasilitasController@destroy')->name('.destroy');
+		});
 	});
 });
 
@@ -79,6 +95,9 @@ Route::get('/about', 'FrontController@about')->name('about');
 Route::get('/project', 'FrontController@project')->name('project');
 Route::get('/galery', 'FrontController@galery')->name('galery');
 Route::get('/contact', 'FrontController@contact')->name('contact');
+Route::get('/project/{name}', 'FrontController@projectDetail')->name('projectDetail');
+Route::get('/image/{slug}/{type}', 'FrontController@image')->name('image');
+Route::get('/image/{slug}/{type}/{id}', 'FrontController@image')->name('image_id');
 
 Route::get('/clear-cache', function() {
     $exitCode = Artisan::call('config:clear');

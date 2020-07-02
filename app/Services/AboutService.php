@@ -2,6 +2,7 @@
 namespace Services;
 use App\About;
 use Storage;
+use Intervention\Image\Facades\Image;
 
 class AboutService
 {
@@ -10,55 +11,56 @@ class AboutService
         $this->uploadPath = storage_path("app/public/upload/about/");
 	}
 
-	public function store($data)
+	public function store($req)
 	{
         $imagename = "about.png";
-        if ($data->has('image')){
+        if ($req->has('image')){
             $this->checkDir(false);
             $uploadPath = $this->uploadPath;
             $imagename = "about-".str_replace('.', '', microtime(true)).".jpg";
             $path = Storage::putFileAs(
 	            'public/upload/about/',
-	            $data->file('image'),
+	            $req->file('image'),
 	            $imagename
 	        );
         }
 		$data = About::create([
-			'name' => $data['name'],
-			'title' => $data['title'],
+			'name' => $req['name'],
+			'title' => $req['title'],
 			'image' => $imagename,
-			'fb' => $data['fb'],
-			'twitter' => $data['twitter'],
-			'in' => $data['in'],
-			// 'status' => $data['status']
+			'fb' => $req['fb'],
+			'twitter' => $req['twitter'],
+			'in' => $req['in'],
+			// 'status' => $req['status']
 		]);
 		return $data;
 	}
 
-	public function update($data, $id)
+	public function update($req, $id)
 	{
-        $imagename = "about.png";
-        if ($data->has('image')){
-            $this->checkDir(false);
-            $uploadPath = $this->uploadPath;
-            $imagename = "about-".str_replace('.', '', microtime(true)).".jpg";
-            $path = Storage::putFileAs(
-	            'public/upload/project/',
-	            $data->file('image'),
-	            $imagename
-	        );
-        }
-		$data = About::find($id);
-		Storage::delete('/public/upload/about/'.$data->image);
-		$data->update([
-			'name' => $data['name'],
-			'title' => $data['title'],
-			'image' => $imagename,
-			'fb' => $data['fb'],
-			'twitter' => $data['twitter'],
-			'in' => $data['in'],
-			'status' => $data['status']
-		]);
+        if (isset($req['image'])){
+	        $this->checkDir(true);
+			$data = About::find($id);
+			$image = $this->upload($data->image, $req['image']);
+			$data = $data->update([
+				'name' => $req['name'],
+				'title' => $req['title'],
+				'image' => $image,
+				'fb' => $req['fb'],
+				'twitter' => $req['twitter'],
+				'in' => $req['in'],
+				'status' => $req['status']
+			]);
+        }else{
+			$data = About::find($id)->update([
+				'name' => $req['name'],
+				'title' => $req['title'],
+				'fb' => $req['fb'],
+				'twitter' => $req['twitter'],
+				'in' => $req['in'],
+				'status' => $req['status']
+			]);
+		}
 		return $data;
 	}
 
@@ -69,6 +71,21 @@ class AboutService
 		$data = About::destroy($id);
 		return $data;
 	}
+
+
+    /**
+    * check directory and create
+    **/
+    private function upload($old = false, $new = false){
+    	if($old){
+			Storage::delete('/public/upload/about/'.$old);
+    	}
+        $imagename = "about-".str_replace('.', '', microtime(true)).'.'.$new->getClientOriginalExtension();
+        $image = Image::make($new)->resize(NULL, 200, function ($constraint) {$constraint->aspectRatio();});
+        // ->fit(200, 200);
+        $image->save($this->uploadPath.'/'.$imagename);
+        return $imagename;
+    }
 
 
     /**

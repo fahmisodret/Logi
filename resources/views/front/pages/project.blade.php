@@ -10,7 +10,7 @@
                 <div class="col-md-6 col-lg-3 mb-4">
                     <div class="project-item">
                         <div class="project-item-contents">
-                            <a href="{{'#'}}">
+                            <a href="{{route('projectDetail', Str::slug($project->title))}}">
                             <span class="project-item-category">{{$project->title}}</span>
                             <h2 class="project-item-title">
                                 {{$project->subtitle}}

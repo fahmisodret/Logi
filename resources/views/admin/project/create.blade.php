@@ -35,7 +35,7 @@
                 <div class="form-group">
                     <label for="keterangan" class="col-sm-2 control-label">Keterangan</label>
                     <div class="col-sm-8">
-                        <textarea class="form-control" name="keterangan" placeholder="keterangan" cols="2"></textarea>
+                        <textarea class="form-control" id="editor" name="keterangan" placeholder="keterangan" cols="2"></textarea>
                     </div>
                 </div>
                 <div class="form-group">

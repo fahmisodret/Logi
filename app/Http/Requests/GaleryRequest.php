@@ -25,7 +25,7 @@ class GaleryRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'image' => 'required|file|mimes:jpeg,png,jpg,gif,svg|max:3000', // max 3MB,
+            // 'image' => 'required|file|mimes:jpeg,png,jpg,gif,svg|max:3000', // max 3MB,
         ];
     }
 
@@ -42,6 +42,18 @@ class GaleryRequest extends FormRequest
             'image.file' => 'Image is not file!', 
             'image.max' => 'Image max is 3mb!', 
             'image.mimes' => 'Image type valid is "jpeg,png,jpg,gif,svg"!', 
+        ];
+    }
+
+    public function getValidRequest()
+    {
+        return [
+            'project_id' => $this->input('project_id'),
+            'detail_id' => $this->input('detail_id'),
+            'fasilitas_id' => $this->input('fasilitas_id'),
+            'name' => $this->input('name'),
+            'image' => $this->file('image'),
+            'keterangan' => $this->input('keterangan'),
         ];
     }
 }

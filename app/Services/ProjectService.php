@@ -11,16 +11,16 @@ class ProjectService
         $this->uploadPath = storage_path("app/public/upload/project/");
 	}
 	
-	public function store($data)
+	public function store($req)
 	{
         $imagename = "project.png";
-        if ($data->has('image')){
+        if ($req->has('image')){
             $this->checkDir(false);
             $uploadPath = $this->uploadPath;
-            $imagename = "prj-".str_replace('.', '', microtime(true)).".jpg";
+            $imagename = "dsm-prj-".str_replace('.', '', microtime(true)).".jpg";
             $path = Storage::putFileAs(
 	            'public/upload/project/',
-	            $data->file('image'),
+	            $req->file('image'),
 	            $imagename
 	        );
             // $image = Image::make($image)->resize(NULL, 400, function ($constraint) {$constraint->aspectRatio();});//->fit(400, 200);
@@ -28,44 +28,51 @@ class ProjectService
         }
 
 		$data = Project::create([
-			'title' => $data['title'],
-			'subtitle' => $data['subtitle'],
+			'title' => $req['title'],
+			'subtitle' => $req['subtitle'],
 			'image' => $imagename,
-			'keterangan' => $data['keterangan'],
+			'keterangan' => $req['keterangan'],
 		]);
 		return $data;
 	}
 
-	public function update($data, $id)
+	public function update($req, $id)
 	{
         $imagename = "project.png";
-        if ($data->has('image')){
+        if ($req->has('image')){
             $this->checkDir(false);
             $uploadPath = $this->uploadPath;
-            $imagename = "prj-".str_replace('.', '', microtime(true)).".jpg";
+            $imagename = "dsm-prj-".str_replace('.', '', microtime(true)).".jpg";
             $path = Storage::putFileAs(
 	            'public/upload/project/',
-	            $data->file('image'),
+	            $req->file('image'),
 	            $imagename
 	        );
             // $image = Image::make($image)->resize(NULL, 400, function ($constraint) {$constraint->aspectRatio();});//->fit(400, 200);
             // $image->save($uploadPath.'/'.$imagename);
+			$data = Project::find($id);
+			Storage::delete('/public/upload/project/'.$req->image);
+			$data->update([
+				'title' => $req['title'],
+				'subtitle' => $req['subtitle'],
+				'image' => $imagename,
+				'keterangan' => $req['keterangan'],
+			]);
+        }else{
+			$data = Project::find($id);
+			$data = $data->update([
+				'title' => $req['title'],
+				'subtitle' => $req['subtitle'],
+				'keterangan' => $req['keterangan'],
+			]);
         }
-		$data = Project::find($id);
-		Storage::delete('/public/upload/project/'.$data->image);
-		$data->update([
-			'title' => $data['title'],
-			'subtitle' => $data['subtitle'],
-			'image' => $imagename,
-			'keterangan' => $data['keterangan'],
-		]);
 		return $data;
 	}
 
 	public function destroy($id)
 	{
 		$data = Project::find($id);
-		Storage::delete('/public/upload/project/'.$data->image);
+		Storage::delete('/public/upload/project/'.$req->image);
 		$data = Project::destroy($id);
 		return $data;
 	}

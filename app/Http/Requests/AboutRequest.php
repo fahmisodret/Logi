@@ -26,7 +26,8 @@ class AboutRequest extends FormRequest
         return [
             'name' => 'required',
             'title' => 'required',
-            'image' => 'required|file|mimes:jpeg,png,jpg,gif,svg|max:3000', // max 3MB,
+            // 'image' => 'required|file|mimes:jpeg,png,jpg,gif,svg|max:3000', // max 3MB,
+            'image' => 'file|mimes:jpeg,png,jpg,gif,svg|max:2000', // max 3MB,
             'fb' => 'required',
             'twitter' => 'required',
             'in' => 'required',
@@ -43,7 +44,7 @@ class AboutRequest extends FormRequest
         return [
             'name' => 'Name is required!',
             'title' => 'Judul is required!',
-            'image.required' => 'Image is required!', 
+            // 'image.required' => 'Image is required!', 
             'image.file' => 'Image is not file!', 
             'image.max' => 'Image max is 3mb!', 
             'image.mimes' => 'Image type valid is "jpeg,png,jpg,gif,svg"!', 

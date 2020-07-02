@@ -3,159 +3,125 @@
 @endsection
 
 @section('content')
-    <div class="site-section">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-12 mb-5 text-center">
-            <h3 class="section-subtitle">Tim Kami</h3>
-            <h2 class="section-title text-black mb-4">Tim <strong>berpengalaman</strong> kami.</h2>
-          </div>
-        </div>
-
+<!-- Demo header-->
+<section class="py-5 header">
+    <div class="container py-4">
         <div class="row">
-          @foreach($data as $about)
-          <div class="col-lg-3 col-md-6 mb-lg-0">
-            <div class="person">
-              <figure>
-                <img src="{{$about->avatar_url}}" alt="Image" class="img-fluid">
-                <div class="social">
-                  <a href="{{$about->fb}}"><span class="icon-facebook"></span></a>
-                  <a href="{{$about->twitter}}"><span class="icon-twitter"></span></a>
-                  <a href="{{$about->in}}"><span class="icon-linkedin"></span></a>
+            <div class="col-md-3">
+                <!-- Tabs nav -->
+                <div class="nav flex-column nav-pills nav-pills-custom" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                    <a class="nav-link mb-3 p-3 shadow active" id="v-pills-about-tab" data-toggle="pill" href="#v-pills-about" role="tab" aria-controls="v-pills-about" aria-selected="true">
+                        <i class="fa fa-user-circle-o mr-2"></i>
+                        <span class="font-weight-bold small text-uppercase">Tentang Kami</span>
+                    </a>
+                    <a class="nav-link mb-3 p-3 shadow" id="v-pills-team-tab" data-toggle="pill" href="#v-pills-team" role="tab" aria-controls="v-pills-team" aria-selected="false">
+                        <i class="fa fa-calendar-minus-o mr-2"></i>
+                        <span class="font-weight-bold small text-uppercase">Tim Kami</span>
+                    </a>
+                    <a class="nav-link mb-3 p-3 shadow" id="v-pills-contact-tab" data-toggle="pill" href="#v-pills-contact" role="tab" aria-controls="v-pills-contact" aria-selected="false">
+                        <i class="fa fa-calendar-minus-o mr-2"></i>
+                        <span class="font-weight-bold small text-uppercase">Kontak</span>
+                    </a>
                 </div>
-              </figure>
-              <div class="person-contents">
-                <h3>{{$about->name}}</h3>
-                <span class="position">{{$about->title}}</span>
-              </div>
             </div>
-          </div>
-          @endforeach
+
+            <div class="col-md-9">
+                <!-- Tabs content -->
+                <div class="tab-content" id="v-pills-tabContent">
+                    <div class="tab-pane fade shadow rounded bg-white show active p-5" id="v-pills-about" role="tabpanel" aria-labelledby="v-pills-about-tab">
+                        {{-- <header class="text-center mb-5 pb-5">
+                            <h1 class="display-4">Bootstrap vertical tabs</h1>
+                            <p class="font-italic mb-1">Making advantage of Bootstrap 4 components, easily build an awesome tabbed interface.</p>
+                            <p class="font-italic">Snippet by
+                                <a class="text-white" href="https://bootstrapious.com/">
+                                    <u>Bootstrapious</u>
+                                </a>
+                            </p>
+                        </header> --}}
+                        <h4 class="font-italic mb-4">Tentang Kami</h4>
+                        <p class="font-italic text-muted mb-2">{!! Facades\Services\ConfigService::findByName('info_tentang')->keterangan !!}</p>
+                    </div>
+                    
+                    <div class="tab-pane fade shadow rounded bg-white p-5" id="v-pills-team" role="tabpanel" aria-labelledby="v-pills-team-tab">
+                        <h4 class="font-italic mb-4">Tim Kami</h4>
+                        <div class="row">
+                            @foreach($data as $about)
+                            <div class="col-lg-3 col-md-6 mb-lg-0">
+                                <div class="person">
+                                    <figure>
+                                        <img src="{{$about->avatar_url}}" alt="Image" class="img-fluid" onerror="this.src='{{Storage::url('upload/about/about.png')}}'">
+                                        <div class="social">
+                                            <a href="{{$about->fb}}"><span class="icon-facebook"></span></a>
+                                            <a href="{{$about->twitter}}"><span class="icon-twitter"></span></a>
+                                            <a href="{{$about->in}}"><span class="icon-linkedin"></span></a>
+                                        </div>
+                                    </figure>
+                                    <div class="person-contents">
+                                        <h3>{{$about->name}}</h3>
+                                        <span class="position">{{$about->title}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            @endforeach
+                      </div>
+                    </div>
+
+                    <div class="tab-pane fade shadow rounded bg-white p-5" id="v-pills-contact" role="tabpanel" aria-labelledby="v-pills-contact-tab">
+                        <h4 class="font-italic mb-4">Kontak</h4>
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label for="fname">First Name</label>
+                                <input type="text" id="fname" class="form-control form-control-lg">
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label for="lname">Last Name</label>
+                                <input type="text" id="lname" class="form-control form-control-lg">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label for="eaddress">Email Address</label>
+                                <input type="text" id="eaddress" class="form-control form-control-lg">
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label for="tel">Tel. Number</label>
+                                <input type="text" id="tel" class="form-control form-control-lg">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                <label for="message">Message</label>
+                                <textarea name="" id="message" cols="30" rows="10" class="form-control"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12">
+                                <input type="submit" value="Send Message" class="btn btn-primary rounded-0 px-3 px-5">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
+        {{-- <div class="row">
+            <div class="col-md-3" style="height: 300px; overflow-y: scroll;">
+                <a class="twitter-timeline" href="https://twitter.com/TwitterDev?ref_src=twsrc%5Etfw">Tweets by TwitterDev</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+            </div>
+            <div class="col-md-3" style="height: 300px">
+                <div class="fb-page" 
+                    data-href="https://www.facebook.com/loji.tjokro.9" 
+                    data-tabs="timeline" 
+                    data-width="400" 
+                    data-height="300" 
+                    data-small-header="true" 
+                    data-adapt-container-width="true" 
+                    data-hide-cover="false" 
+                    data-show-facepile="false"></div>
+            </div>
+        </div> --}}
     </div>
-
-    {{-- <div class="site-section services-1-wrap">
-      <div class="container">
-        <div class="row mb-5 justify-content-center text-center">
-          <div class="col-lg-5">
-              <h3 class="section-subtitle">What We Do</h3>
-              <h2 class="section-title mb-4 text-black">We Are <strong>Leading Industry</strong> of Engineering. We Love What We Do</h2>
-          </div>
-        </div>
-        <div class="row no-gutters">
-          <div class="col-lg-3 col-md-6">
-            <div class="service-1">
-              <span class="number">01</span>
-              <div class="service-1-icon">
-                <span class="flaticon-engineer"></span>
-              </div>
-              <div class="service-1-content">
-                <h3 class="service-heading">Professional Team</h3>
-                <p>Gravida sodales condimentum pellen tesq accumsan orci quam sagittis sapie</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6">
-            <div class="service-1">
-              <span class="number">02</span>
-              <div class="service-1-icon">
-                <span class="flaticon-compass"></span>
-              </div>
-              <div class="service-1-content">
-                <h3 class="service-heading">Great Ideas</h3>
-                <p>Gravida sodales condimentum pellen tesq accumsan orci quam sagittis sapie</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6">
-            <div class="service-1">
-              <span class="number">03</span>
-              <div class="service-1-icon">
-                <span class="flaticon-oil-platform"></span>
-              </div>
-              <div class="service-1-content">
-                <h3 class="service-heading">Quality Building</h3>
-                <p>Gravida sodales condimentum pellen tesq accumsan orci quam sagittis sapie</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6">
-            <div class="service-1">
-              <span class="number">04</span>
-              <div class="service-1-icon">
-                <span class="flaticon-crane"></span>
-              </div>
-              <div class="service-1-content">
-                <h3 class="service-heading">Quality Works</h3>
-                <p>Gravida sodales condimentum pellen tesq accumsan orci quam sagittis sapie</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> --}}
-    <!-- END services -->
-
-    {{-- <div class="site-section pb-0">
-      <div class="block-2 pb-0 mb-0">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-6 mb-4 mb-lg-0">
-              <img src="images/about_1.jpg" alt="Image " class="img-fluid img-overlap">
-            </div>
-            <div class="col-lg-5 ml-auto">
-              <h3 class="section-subtitle">Why Choose Us</h3>
-              <h2 class="section-title mb-4">More than <strong>50 year experience</strong> in industry</h2>
-              <p>Reprehenderit, odio laboriosam? Blanditiis quae ullam quasi illum minima nostrum perspiciatis error consequatur sit nulla.</p>
-
-              <div class="row my-5">
-                <div class="col-lg-12 d-flex align-items-center mb-4">
-                  <span class="line-height-0 flaticon-oil-platform display-4 mr-4 text-primary"></span>
-                  <div>
-                    <h4 class="m-0 h5 text-white">Expert in Builings</h4>
-                    <p class="text-white">Lorem ipsum dolor sit amet.</p>
-                  </div>
-                </div>
-                <div class="col-lg-12 d-flex align-items-center mb-4">
-                  <span class="line-height-0 flaticon-compass display-4 mr-4 text-primary"></span>
-                  <div>
-                    <h4 class="m-0 h5 text-white">Modern Design</h4>
-                    <p class="text-white">Lorem ipsum dolor sit amet.</p>
-                  </div>
-                </div>
-                <div class="col-lg-12 d-flex align-items-center">
-                  <span class="line-height-0 flaticon-planning display-4 mr-4 text-primary"></span>
-                  <div>
-                    <h4 class="m-0 h5 text-white">Leading In Floor Planning</h4>
-                    <p class="text-white">Lorem ipsum dolor sit amet.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> --}}
-    <!-- END block-2 -->
-    
-    {{-- <div class="py-5 bg-primary block-4">
-      <div class="container">
-        <div class="row align-items-center">
-          <div class="col-lg-6">
-            <h3 class="text-white">Subscribe To Newsletter</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt, reprehenderit!</p>
-          </div>
-          <div class="col-lg-6">
-            <form action="#" class="form-subscribe d-flex">
-              <input type="text" class="form-control form-control-lg">
-              <input type="submit" class="btn btn-secondary px-4" value="Subcribe">
-            </form>
-          </div>
-        </div>
-      </div>
-    </div> --}}
-
+</section>
 @endsection
 @section('js')
 @endsection

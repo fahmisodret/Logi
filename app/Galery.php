@@ -7,7 +7,8 @@ use Storage;
 
 class Galery extends Model
 {
-    protected $fillable = ['name','image'];
+    protected $fillable = ['project_id', 'detail_id', 'fasilitas_id', 'name', 'image', 'keterangan'];
+    protected $appends = ['image_url'];
 
     public function getImageUrlAttribute()
     {

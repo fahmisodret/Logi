@@ -21,7 +21,7 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <li class="nav-item">
             <a href="{{ route('admin.config.index') }}" class="nav-link">
-              <i class="nav-icon fas fa-edit"></i>
+              <i class="nav-icon fas fa-wrench"></i>
               <p>
                 Konfigurasi
               </p>
@@ -29,7 +29,7 @@
           </li>
           <li class="nav-item">
             <a href="{{ route('admin.user.index') }}" class="nav-link">
-              <i class="nav-icon fas fa-edit"></i>
+              <i class="nav-icon fas fa-user"></i>
               <p>
                 User
               </p>
@@ -37,7 +37,7 @@
           </li>
           <li class="nav-item">
             <a href="{{ route('admin.about.index') }}" class="nav-link">
-              <i class="nav-icon fas fa-edit"></i>
+              <i class="nav-icon fas fa-italic"></i>
               <p>
                 About
               </p>
@@ -45,15 +45,31 @@
           </li>
           <li class="nav-item">
             <a href="{{ route('admin.project.index') }}" class="nav-link">
-              <i class="nav-icon fas fa-edit"></i>
+              <i class="nav-icon fas fa-pen-alt"></i>
               <p>
                 Project
               </p>
             </a>
           </li>
           <li class="nav-item">
+            <a href="{{ route('admin.project-detail.index') }}" class="nav-link">
+              <i class="nav-icon fas fa-pen-alt"></i>
+              <p>
+                Project Detail
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('admin.fasilitas.index') }}" class="nav-link">
+              <i class="nav-icon fas fa-border-none"></i>
+              <p>
+                Fasilitas
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="{{ route('admin.galery.index') }}" class="nav-link">
-              <i class="nav-icon fas fa-edit"></i>
+              <i class="nav-icon fas fa-clone"></i>
               <p>
                 Galery
               </p>
@@ -61,7 +77,7 @@
           </li>
           <li class="nav-item">
             <a href="{{ route('admin.slider.index') }}" class="nav-link">
-              <i class="nav-icon fas fa-edit"></i>
+              <i class="nav-icon fas fa-clone"></i>
               <p>
                 Slider
               </p>
