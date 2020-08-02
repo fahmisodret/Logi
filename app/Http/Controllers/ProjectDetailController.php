@@ -20,7 +20,7 @@ class ProjectDetailController extends Controller
 	}
 
 	public function create(){
-		$data['project'] = Project::all();
+		$data['project'] = Project::select('id', 'title')->where('is_progres', 0)->get();
 		return view('admin.project_detail.create', $data);
 	}
 
@@ -30,7 +30,7 @@ class ProjectDetailController extends Controller
 	}
 
 	public function edit($id){
-		$data['project'] = Project::all();
+		$data['project'] = Project::select('id', 'title')->where('is_progres', 0)->get();
 		$data['data'] = ProjectDetail::find($id);
 		return view('admin.project_detail.edit', $data);
 	}

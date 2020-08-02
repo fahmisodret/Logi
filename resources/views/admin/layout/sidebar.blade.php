@@ -52,6 +52,14 @@
             </a>
           </li>
           <li class="nav-item">
+            <a href="{{ route('admin.progres.index') }}" class="nav-link">
+              <i class="nav-icon fas fa-pen-alt"></i>
+              <p>
+                Progres
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="{{ route('admin.project-detail.index') }}" class="nav-link">
               <i class="nav-icon fas fa-pen-alt"></i>
               <p>

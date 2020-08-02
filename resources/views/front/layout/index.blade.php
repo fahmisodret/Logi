@@ -92,27 +92,18 @@
             <div class="mr-auto">
               <nav class="site-navigation position-relative text-right" role="navigation">
                 <ul class="site-menu main-menu js-clone-nav mr-auto d-none pl-0 d-lg-block">
-                  <li>
-                    <a href="{{route('home')}}" class="nav-link text-left">Home</a>
-                  </li>
-                  <li>
-                    <a href="{{route('about')}}" class="nav-link text-left">Tentang Kami</a>
-                  </li>
-                  <li>
-                    <a href="{{route('project')}}" class="nav-link text-left">Project</a>
-                  </li>
-                  <li>
-                    <a href="{{route('galery')}}" class="nav-link text-left">Galery</a>
-                  </li>
+                  <li><a href="{{route('home')}}" class="nav-link text-left">Home</a></li>
+                  <li><a href="{{route('about')}}" class="nav-link text-left">Tentang Kami</a></li>
+                  <li><a href="{{route('project')}}" class="nav-link text-left">Project</a></li>
+                  <li><a href="{{route('progres')}}" class="nav-link text-left">Progres</a></li>
+                  <li><a href="{{route('galery')}}" class="nav-link text-left">Galery</a></li>
                   {{-- <li>
                     <a href="testimonials.html" class="nav-link text-left">Testimonials</a>
                   </li> --}}
                   {{-- <li>
                     <a href="blog.html" class="nav-link text-left">Blog</a>
                   </li> --}}
-                  <li>
-                    <a href="{{route('contact')}}" class="nav-link text-left">Contact</a>
-                  </li>
+                  <li><a href="{{route('contact')}}" class="nav-link text-left">Contact</a></li>
               </nav>
             </div>
           </div>

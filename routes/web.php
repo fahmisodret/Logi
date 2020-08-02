@@ -41,7 +41,7 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
 			Route::post('/update/{id}', 'AboutController@update')->name('.update');
 			Route::get('/destroy/{id}', 'AboutController@destroy')->name('.destroy');
 		});
-		Route::group(['prefix' => 'project', 'as' => '.project'], function () {
+		Route::group(['prefix' => 'project', 'as' => '.project', 'namespace' => 'Backend'], function () {
 			Route::get('/', 'ProjectController@index')->name('.index');
 			Route::get('/create', 'ProjectController@create')->name('.create');
 			Route::post('/store', 'ProjectController@store')->name('.store');
@@ -87,15 +87,25 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
 			Route::post('/update/{id}', 'FasilitasController@update')->name('.update');
 			Route::get('/destroy/{id}', 'FasilitasController@destroy')->name('.destroy');
 		});
+		Route::group(['prefix' => 'progres', 'as' => '.progres', 'namespace' => 'Backend'], function () {
+			Route::get('/', 'ProgresController@index')->name('.index');
+			Route::get('/create', 'ProgresController@create')->name('.create');
+			Route::post('/store', 'ProgresController@store')->name('.store');
+			Route::get('/edit/{id}', 'ProgresController@edit')->name('.edit');
+			Route::post('/update/{id}', 'ProgresController@update')->name('.update');
+			Route::get('/destroy/{id}', 'ProgresController@destroy')->name('.destroy');
+		});
 	});
 });
 
 Route::get('/', 'FrontController@index')->name('home');
 Route::get('/about', 'FrontController@about')->name('about');
 Route::get('/project', 'FrontController@project')->name('project');
+Route::get('/progres', 'FrontController@progres')->name('progres');
 Route::get('/galery', 'FrontController@galery')->name('galery');
 Route::get('/contact', 'FrontController@contact')->name('contact');
 Route::get('/project/{name}', 'FrontController@projectDetail')->name('projectDetail');
+Route::get('/progres/{name}', 'FrontController@progresDetail')->name('progresDetail');
 Route::get('/image/{slug}/{type}', 'FrontController@image')->name('image');
 Route::get('/image/{slug}/{type}/{id}', 'FrontController@image')->name('image_id');
 

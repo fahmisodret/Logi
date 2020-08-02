@@ -18,7 +18,7 @@ class FasilitasController extends Controller
 	}
 
 	public function create(){
-		$data['project'] = Project::all();
+		$data['project'] = Project::where('is_progres', 0)->get();
 		return view('admin.fasilitas.create', $data);
 	}
 
@@ -28,7 +28,7 @@ class FasilitasController extends Controller
 	}
 
 	public function edit($id){
-		$data['project'] = Project::all();
+		$data['project'] = Project::where('is_progres', 0)->get();
 		$data['data'] = Fasilitas::find($id);
 		return view('admin.fasilitas.edit', $data);
 	}

@@ -65,7 +65,7 @@
                     @foreach($project as $p)
                         <div class="project-item">
                             <div class="project-item-contents">
-                                <a href="{{route('projectDetail', Str::slug($p->title))}}">
+                                <a href="{{($p->is_progres)?route('progresDetail', $p->slug):route('projectDetail', $p->slug)}}">
                                     <span class="project-item-category">{{$p->title}}</span>
                                     <h2 class="project-item-title">
                                         {{$p->subtitle}}

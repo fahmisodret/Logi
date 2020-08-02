@@ -27,8 +27,13 @@ class FrontController extends Controller
 		return view('front.pages.project', $data);
 	}
 
+	public function progres(){
+		$data['data'] = Project::where('is_progres', 1)->get();
+		return view('front.pages.progres', $data);
+	}
+
 	public function galery(){
-		$data['data'] = Galery::all();
+		$data['data'] = Galery::paginate(8);
 		return view('front.pages.galery', $data);
 	}
 
@@ -41,8 +46,13 @@ class FrontController extends Controller
 		return view('front.pages.project_detail', $data);
 	}
 
+	public function progresDetail($slug){
+		$data['data'] = Project::where('slug', $slug)->first();
+		return view('front.pages.progres_detail', $data);
+	}
+
 	// page image
-	public function image($slug, $type, $id){
+	public function image($slug, $type, $id=0){
 		// switch ($type) {
 		// 	case 'fasilitas':
 		// 		$data['data'] = Project::where('slug', $slug)->with('project')->first();

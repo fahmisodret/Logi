@@ -10,7 +10,7 @@
                 <div class="col-md-6 col-lg-3 mb-4">
                     <div class="project-item galery">
                         <div class="project-item-contents">
-                            <a href="{{'#'}}">
+                            <a href="{{$galery->image_url}}">
                                 <span class="project-item-category">{{$galery->name}}</span>
                             </a>
                         </div>
@@ -20,6 +20,9 @@
                     </div>
                 </div>
                 @endforeach
+                <div class="col-md-12 col-lg-12 mb-4">
+                    {{ $data->links() }}
+                </div>
             </div>
         </div>
     </div>

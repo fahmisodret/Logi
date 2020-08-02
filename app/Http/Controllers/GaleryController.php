@@ -18,7 +18,7 @@ class GaleryController extends Controller
 	}
 
 	public function create(){
-		$data['project'] = Project::select('id', 'title')->get();
+		$data['project'] = Project::select('id', 'title')->where('is_progres', 0)->get();
 		$data['detail'] = ProjectDetail::with('project')->get();
 		$data['fasilitas'] = Fasilitas::with('project')->get();
 		return view('admin.galery.create', $data);
@@ -30,7 +30,7 @@ class GaleryController extends Controller
 	}
 
 	public function edit($id){
-		$data['project'] = Project::select('id', 'title')->get();
+		$data['project'] = Project::select('id', 'title')->where('is_progres', 0)->get();
 		$data['detail'] = ProjectDetail::select('id', 'title')->get();
 		$data['fasilitas'] = Fasilitas::select('id', 'name')->get();
 		$data['data'] = Galery::find($id);
